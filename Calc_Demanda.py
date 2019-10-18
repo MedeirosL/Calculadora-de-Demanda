@@ -19,5 +19,5 @@ print (sheetranges['B2'].value)
 wb.save('data.xlsx')
 wb.close()
 print (sheetranges['H14'].value)
-
+#teste
 #print(max(demandaLida))
