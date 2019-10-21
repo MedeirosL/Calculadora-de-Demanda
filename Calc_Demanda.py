@@ -2,7 +2,7 @@ from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.cell import Cell
 from openpyxl.comments import Comment
-
+#Variáveis#
 demandaLidaP = []
 demandaLidaFP = []
 demandaLida = []
@@ -24,6 +24,7 @@ m=0
 wb = load_workbook(filename = 'data.xlsx',data_only=True)
 wb.active
 sheetranges=wb['Planilha1']
+#Importa dados da Planilha#
 for i in range (2,14):
     demandaLidaFP.append(sheetranges['H'+str(i)].value)
     demandaLidaP.append(sheetranges['I'+str(i)].value)
@@ -36,7 +37,7 @@ for i in range (2,14):
 kW_Verde=sheetranges['C5'].value
 kWhP_Verde=sheetranges['C3'].value
 kWhFP_Verde=sheetranges['C4'].value
-
+#Calcula melhor HSV Simples#
 for i in range (30,100):
     for j in range (0,12):
         demandaContratada[j]=i
@@ -54,9 +55,9 @@ for i in range (30,100):
     demandaValor=0
     ultrapassagemValor=0
 melhorContrato = 30 + int(valorTotal.index(min(valorTotal)))
-print ("O melhor contrato HSV é de:", melhorContrato,"kW")
+print ("O melhor contrato HSV é de:", melhorContrato,"kW\nValor: R$",min(valorTotal))
 valorTotal.clear()
-
+#Calcula melhor HSV Multipatamar#
 demandaContratada=[30,30,30,30,30,30,30,30,30,30,30,30]
 for k in range (4,9):
     for m in range (0,60):
@@ -74,6 +75,7 @@ for k in range (4,9):
                     if demandaLida[j]>demandaContratada[j]*1.05:
                         ultrapassagemValor+=(demandaLida[j]-demandaContratada[j])*kW_Verde*2
                 valorTotal.append(demandaValor + consumoFPValor + consumoPValor + ultrapassagemValor)
+                #-Ler aqui o menor contrato para evitar o próximo loop-#
                 consumoFPValor=0
                 consumoPValor=0
                 demandaValor=0
@@ -102,6 +104,7 @@ for k in range (4,9):
                 if len(valorTotal)==indexHSVMulti+1:
                     print ("\nO melhor contrato HSV Multipatamar é:")
                     print (demandaContratada)
+                    print ("Valor: R$",valorTotal[len(valorTotal)-1])
                 consumoFPValor=0
                 consumoPValor=0
                 demandaValor=0
@@ -111,3 +114,4 @@ for k in range (4,9):
             l+=1
         m+=1
         l=0
+#Continuar daqui#
