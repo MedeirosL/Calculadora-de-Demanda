@@ -38,7 +38,7 @@ kW_Verde=sheetranges['C5'].value
 kWhP_Verde=sheetranges['C3'].value
 kWhFP_Verde=sheetranges['C4'].value
 #Calcula melhor HSV Simples#
-for i in range (30,100):
+for i in range (30,700):
     for j in range (0,12):
         demandaContratada[j]=i
         if demandaLida[j]>demandaContratada[j]:
@@ -60,9 +60,9 @@ valorTotal.clear()
 #Calcula melhor HSV Multipatamar#
 demandaContratada=[30,30,30,30,30,30,30,30,30,30,30,30]
 for k in range (4,9):
-    for m in range (0,60):
+    for m in range (0,700):
         for l in range (0,9):
-            for i in range (30,100-m):
+            for i in range (30,700-m):
                 for j in range (0,12):
                     if j<k:
                         demandaContratada[j+l-k+4]=demandaContratada[j+l-k+4]+1
@@ -86,9 +86,9 @@ indexHSVMulti=valorTotal.index(min(valorTotal))
 valorTotal.clear()   
 demandaContratada=[30,30,30,30,30,30,30,30,30,30,30,30]
 for k in range (4,9):
-    for m in range (0,60):
+    for m in range (0,700):
         for l in range (0,9):
-            for i in range (30,100-m):
+            for i in range (30,700-m):
                 for j in range (0,12):
                     if j<k:
                         demandaContratada[j+l-k+4]=demandaContratada[j+l-k+4]+1
